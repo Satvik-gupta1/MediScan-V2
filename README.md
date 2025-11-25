@@ -1,183 +1,225 @@
-# MediScan-2.0
-🏥 MediScan AI - Medical Diagnostic System
+# 🩺 MediScan AI
 
-MediScan AI is a comprehensive medical imaging and diagnostic suite that leverages both Generative AI (Google Gemini) and Traditional Deep Learning (DenseNet121) to analyze medical scans (X-rays, MRIs). The system features patient management, automated clinical report generation, and explainable AI visualizations.
+An advanced AI-powered medical imaging diagnostic platform built with Streamlit and Google Gemini AI. MediScan AI provides intelligent analysis of medical scans (X-rays, MRIs) with real-time anomaly detection, clinical report generation, and comprehensive patient management.
 
-🚀 Key Features
+![MediScan AI](https://img.shields.io/badge/AI-Powered-blue) ![Python](https://img.shields.io/badge/Python-3.8+-green) ![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red)
 
-1. MediScan AI (Main Application)
+## ✨ Features
 
-Visual Scan: Uses Gemini 2.5 Flash to identify organs and detect anomalies with bounding boxes.
+### 🔍 Visual Scan Analysis
+- **AI-Powered Image Analysis**: Upload X-rays or MRI scans for instant AI analysis
+- **Anomaly Detection**: Automatic detection and highlighting of medical anomalies
+- **Real-time Annotation**: Visual bounding boxes around detected conditions
+- **Multi-organ Support**: Analyzes lungs, heart, bones, brain, and more
 
-Clinical Reporting: Generates deep clinical narratives, risk percentages, and recommendations.
+### 📄 Clinical Report Generation
+- **Deep Clinical Analysis**: Comprehensive medical narrative generation
+- **Risk Assessment**: Automated risk percentage calculation
+- **PDF Export**: Professional medical reports with annotated images
+- **Specialist Routing**: Automatic assignment to appropriate medical departments
 
-AI Doctor Assistant: Interactive chat for doctors to discuss diagnoses.
+### 🤖 Doctor AI Assistant
+- **Interactive Consultation**: Chat with AI for diagnosis clarification
+- **Treatment Recommendations**: Evidence-based treatment suggestions
+- **Differential Diagnosis**: Explore alternative diagnoses
+- **Medical Literature Integration**: Responses backed by medical knowledge
 
-PDF Reports: Auto-generates downloadable PDF reports with visual evidence.
+### 👨‍⚕️ Doctor Portal
+- **Secure Authentication**: Role-based access for medical professionals
+- **Patient Registry**: Comprehensive patient record management
+- **Department Filtering**: View patients by specialization
+- **Status Tracking**: Monitor patient progress (Pending/Reviewed/Discharged)
 
-2. Deep Learning X-Ray Analyzer
+### 📊 Analytics Dashboard
+- **Department Statistics**: Patient distribution across specializations
+- **Age Demographics**: Visual age distribution analysis
+- **Performance Metrics**: Track diagnostic efficiency
+- **Real-time Updates**: Live dashboard with current statistics
 
-Organ Classification: Uses a custom-trained DenseNet121 model to classify organs (Heart, Lungs, Bone, Brain).
+### 👥 Credits & Team
+- **Team Profiles**: LinkedIn-style circular profile display
+- **Privacy-First**: Base64 encoded images for data security
+- **Professional Layout**: Glassmorphism design with hover effects
 
-Pneumonia Detection: Dedicated CNN model for pneumonia screening.
+## 🚀 Getting Started
 
-Explainable AI (XAI): Grad-CAM integration to visualize heatmap overlays showing where the model is looking.
+### Prerequisites
 
-3. Doctor Portal & Registry
+```bash
+Python 3.8 or higher
+pip (Python package manager)
+```
 
-Secure Login: Role-based access for Cardiologists, Orthologists, Pulmonologists, etc.
+### Installation
 
-Patient Database: Searchable registry of patient records (JSON-backed mock DB).
-
-Analytics Dashboard: Visual breakdown of patient demographics and disease distribution.
-
-🛠️ Tech Stack
-
-Framework: Streamlit
-
-AI/LLM: Google Gemini (via google-generativeai)
-
-Deep Learning: PyTorch (torchxrayvision), TensorFlow/Keras
-
-Image Processing: OpenCV, PIL (Pillow)
-
-Utilities: ReportLab (PDF), Pandas, NumPy
-
-📦 Installation
-
-Clone the Repository
-
-git clone [https://github.com/yourusername/mediscan-ai.git](https://github.com/yourusername/mediscan-ai.git)
+1. **Clone the repository**
+```bash
+git clone https://github.com/yourusername/mediscan-ai.git
 cd mediscan-ai
+```
 
-
-Install Dependencies
-It is recommended to use a virtual environment.
-
+2. **Install dependencies**
+```bash
 pip install -r requirements.txt
+```
 
+3. **Set up environment variables**
 
-Setup Environment Variables
-Create a .env file in the root directory to store your API key:
-
+Create a `.env` file in the root directory:
+```env
 GEMINI_API_KEY=your_google_gemini_api_key_here
+```
 
+To get a Gemini API key:
+- Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
+- Create a new API key
+- Copy and paste it into your `.env` file
 
-🖥️ Usage Guide
-
-This project contains multiple Streamlit applications for different purposes.
-
-1. Run the Main App (MediScan GenAI)
-
-This is the primary interface featuring the modern UI and Gemini integration.
-
+4. **Run the application**
+```bash
 streamlit run medi_scan_app.py
+```
 
+5. **Access the app**
+Open your browser and navigate to `http://localhost:8501`
 
-2. Run the Deep Learning Tool
+## 📁 Project Structure
 
-This tool focuses on the PyTorch/Keras models and Grad-CAM visualizations.
+```
+mediscan-ai/
+├── medi_scan_app.py      # Main Streamlit application
+├── patient_db.py         # Patient database management
+├── pdf_gen.py            # PDF report generation
+├── utils.py              # Utility functions
+├── doctor_portal.py      # Doctor authentication & portal
+├── assests/              # Base64 encoded team images
+│   ├── professor.txt
+│   ├── student1.txt
+│   └── student2.txt
+├── patient_data.json     # Patient records database
+├── .env                  # Environment variables (create this)
+├── requirements.txt      # Python dependencies
+└── README.md            # This file
+```
 
-streamlit run app.py
+## 🛠️ Technology Stack
 
+- **Frontend**: Streamlit (Python web framework)
+- **AI/ML**: Google Gemini 2.5 Flash Lite
+- **Image Processing**: PIL (Python Imaging Library)
+- **PDF Generation**: ReportLab
+- **Data Storage**: JSON-based database
+- **Styling**: Custom CSS with Glassmorphism design
 
-3. Run the Standalone Doctor Portal
+## 💡 Usage Guide
 
-A dedicated interface for record management.
+### For Patients/Technicians
 
-streamlit run doctor_portal.py
+1. **Upload Medical Scan**
+   - Navigate to "🔍 Visual Scan" tab
+   - Upload X-ray or MRI image (JPG, PNG, JPEG)
+   - Click "🚀 Run Diagnostic Scan"
 
+2. **View Analysis**
+   - AI will detect and highlight anomalies
+   - Review detected conditions and severity levels
 
-🔐 Login Credentials (Demo)
+3. **Generate Report**
+   - Go to "📄 Clinical Report" tab
+   - Click "⚡ Generate Clinical Narrative"
+   - Download PDF report for records
 
-The system uses mock authentication for demonstration purposes. Use the following credentials to access the Doctor Portal or restricted sections.
+### For Doctors
 
-Application
+1. **Login**
+   - Navigate to "👨‍⚕️ Doctor Portal" tab
+   - Enter credentials (Demo: username: `doc`, password: `123`)
 
-Role
+2. **Review Patients**
+   - View all patient records in your department
+   - Update patient status
+   - Access full diagnostic reports
 
-Username
+3. **Consult AI**
+   - Use "🤖 Doctor AI" tab for consultation
+   - Ask questions about diagnosis
+   - Get treatment recommendations
 
-Password
+## 🔐 Security Features
 
-medi_scan_app.py
+- **Base64 Image Encoding**: Team photos stored securely
+- **Role-based Access**: Separate portals for doctors and patients
+- **Data Privacy**: Local JSON storage with no external data sharing
+- **Secure Authentication**: Password-protected doctor portal
 
-General Doctor
+## 📊 Sample Credentials
 
-doc
+**Doctor Portal Access:**
+- Username: `doc` | Password: `123` (General)
+- Username: `cardio` | Password: `123` (Cardiologist)
+- Username: `ortho` | Password: `123` (Orthologist)
 
-123
+## 🎨 Design Philosophy
 
-medi_scan_app.py
+MediScan AI features a modern, professional interface with:
+- **Dark Navy Theme**: Easy on the eyes for long sessions
+- **Glassmorphism Effects**: Modern, translucent card designs
+- **Responsive Layout**: Works on desktop and tablet devices
+- **Intuitive Navigation**: Tab-based workflow for easy access
 
-Cardiologist
+## 🤝 Contributing Team
 
-cardio
+### 👨‍🏫 Mentor
+**Dr. Ashish Kumar Diwedi**
+- Assistant Professor @ LNMIIT
+- Project Mentor & Guide
 
-123
+### 👨‍💻 Developers
+**Satvik Gupta**
+- Software Developer
+- B.Tech CSE @ LNMIIT
 
+**Naman Agrawal**
+- AI/ML Engineer
+- B.Tech MME @ LNMIIT
 
+## 📝 License
 
+This project is developed as an academic project at LNMIIT (The LNM Institute of Information Technology).
 
+© Nov-2025, mediscan-health, Inc. or its affiliates
 
+## 🐛 Known Limitations
 
+- **Simulation Mode**: When Gemini API is unavailable, uses mock data
+- **Single User**: Currently supports one session at a time
+- **Local Storage**: Data stored locally in JSON format
+- **Demo Credentials**: Uses simplified authentication for demonstration
 
+## 🔮 Future Enhancements
 
+- [ ] Multi-user support with proper authentication
+- [ ] Database integration (PostgreSQL/MongoDB)
+- [ ] DICOM format support
+- [ ] 3D scan visualization
+- [ ] Mobile app version
+- [ ] Multi-language support
+- [ ] Integration with hospital management systems
+- [ ] Advanced analytics and reporting
 
-doctor_portal.py
+## 📞 Support
 
-General Doctor
+For questions or issues, please contact the development team or create an issue in the repository.
 
-general_doc
+## 🙏 Acknowledgments
 
-general123
+- Google Gemini AI for powerful image analysis
+- Streamlit for the amazing web framework
+- LNMIIT for academic support and resources
+- All contributors and testers
 
-doctor_portal.py
+---
 
-Cardiologist
+**Built with ❤️ using Streamlit & Google Gemini AI**
 
-cardio_doc
-
-cardio123
-
-doctor_portal.py
-
-Orthologist
-
-ortho_doc
-
-ortho123
-
-📂 Project Structure
-
-medi_scan_app.py: The main GenAI-powered application.
-
-app.py: The Deep Learning specific app with Grad-CAM.
-
-xray_analyzer.py: An alternative dashboard implementation.
-
-doctor_portal.py: Standalone portal for viewing patient records.
-
-patient_db.py: Handles database operations (currently using in-memory list & patient_data.json).
-
-pdf_gen.py: Generates medical PDF reports using ReportLab.
-
-preprocessing.py: Helper functions for image normalization and Grad-CAM calculation.
-
-densenet121_xray_classifier.py: The training script used to create the organ classifier model.
-
-requirements.txt: List of required Python packages.
-
-🤖 Models Used
-
-Gemini 2.5 Flash: For general image understanding and report text generation.
-
-DenseNet121 (CheXNet weights): Fine-tuned for organ classification.
-
-Custom CNN: For Pneumonia binary classification.
-
-👥 Credits
-
-Satvik Gupta - Software Developer
-
-Naman Agrawal - AI/ML Engineer
+*Disclaimer: This is an educational project and should not be used for actual medical diagnosis without proper validation and regulatory approval.*
