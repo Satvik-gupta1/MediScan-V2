@@ -279,8 +279,8 @@ metric_card(m4, "AI Risk Score", risk_val)
 st.write("") # Spacer
 
 # 2. Tabs for Workflow
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "🔍 Visual Scan", "📄 Clinical Report", "🤖 Doctor AI", "👨‍⚕️ Doctor Portal", "📊 Analytics"
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+    "🔍 Visual Scan", "📄 Clinical Report", "🤖 Doctor AI", "👨‍⚕️ Doctor Portal", "📊 Analytics", "👥 Credits"
 ])
 
 # --- TAB 1: VISUAL SCAN ---
@@ -889,3 +889,149 @@ with tab5:
     else:
         st.info("📊 No patient data available yet. Start by scanning and saving patient records.")
         st.caption("Analytics will appear here once you have patient data.")
+
+# --- TAB 6: CREDITS ---
+with tab6:
+    st.markdown("<h2 style='text-align: center; margin-bottom: 40px;'>🎓 Project Team</h2>", unsafe_allow_html=True)
+    
+    # Team data with base64 image paths
+    team_members = [
+        {
+            "name": "Dr. Ashish Kumar Diwedi",
+            "role": "Project Mentor",
+            "designation": "Assistant Professor @ LNMIIT",
+            "image_file": "assests/professor.txt"
+        },
+        {
+            "name": "Satvik Gupta",
+            "role": "Software Developer",
+            "designation": "B.Tech CSE @ LNMIIT",
+            "image_file": "assests/student1.txt"
+        },
+        {
+            "name": "Naman Agrawal",
+            "role": "AI/ML Engineer",
+            "designation": "B.Tech MME @ LNMIIT",
+            "image_file": "assests/student2.txt"
+        }
+    ]
+    
+    # CSS for circular images and LinkedIn-style cards
+    st.markdown("""
+    <style>
+        .team-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .team-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            width: 280px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .team-card:hover {
+            transform: translateY(-8px);
+            border-color: #3b82f6;
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+        }
+        .profile-img-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .member-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 8px;
+        }
+        .member-role {
+            font-size: 16px;
+            color: #3b82f6;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .member-designation {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+        .mentor-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #f59e0b, #d97706);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    # Create columns for team members
+    cols = st.columns(3)
+    
+    for idx, member in enumerate(team_members):
+        with cols[idx]:
+            # Try to load and decode base64 image
+            try:
+                if os.path.exists(member["image_file"]):
+                    # Read base64 encoded image
+                    with open(member["image_file"], 'r') as f:
+                        base64_string = f.read().strip()
+                    
+                    # Decode base64 to image
+                    import base64
+                    from io import BytesIO
+                    
+                    image_data = base64.b64decode(base64_string)
+                    img = Image.open(BytesIO(image_data))
+                    
+                    # Resize image
+                    size = (150, 150)
+                    img = img.resize(size, Image.Resampling.LANCZOS)
+                    
+                    # Display image
+                    st.markdown(f'<div style="text-align: center;">', unsafe_allow_html=True)
+                    st.image(img, use_container_width=False, width=150)
+                    st.markdown('</div>', unsafe_allow_html=True)
+                else:
+                    # Fallback to placeholder
+                    st.markdown(f'<div style="text-align: center; margin-bottom: 20px;"><div style="width: 150px; height: 150px; margin: 0 auto; border-radius: 50%; background: #334155; display: flex; align-items: center; justify-content: center; font-size: 48px; border: 4px solid #3b82f6;">👤</div></div>', unsafe_allow_html=True)
+            except Exception as e:
+                # Fallback to placeholder on error
+                st.markdown(f'<div style="text-align: center; margin-bottom: 20px;"><div style="width: 150px; height: 150px; margin: 0 auto; border-radius: 50%; background: #334155; display: flex; align-items: center; justify-content: center; font-size: 48px; border: 4px solid #3b82f6;">👤</div></div>', unsafe_allow_html=True)
+            
+            # Member details
+            st.markdown(f'<div class="member-name">{member["name"]}</div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="member-role">{member["role"]}</div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="member-designation">{member["designation"]}</div>', unsafe_allow_html=True)
+            
+            # Add mentor badge for professor
+            if idx == 0:
+                st.markdown('<div class="mentor-badge">Faculty</div>', unsafe_allow_html=True)
+            if idx == 1:
+                st.markdown('<div class="mentor-badge">Student</div>', unsafe_allow_html=True)
+            if idx == 2:
+                st.markdown('<div class="mentor-badge">Student</div>', unsafe_allow_html=True)
+    
+    st.markdown("<br><br>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #64748b; font-size: 14px;'>© Nov-2025, mediscan-health, Inc. or its affiliates</p>", unsafe_allow_html=True)
