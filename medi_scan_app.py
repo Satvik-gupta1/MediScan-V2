@@ -223,11 +223,11 @@ if "chat_history" not in st.session_state:
 
 # --- SIDEBAR (Navigation & Context) ---
 with st.sidebar:
-    st.markdown("## 🩺 MediScan AI")
-    st.caption("Advanced Diagnostic Imaging")
+    st.markdown("## 🩺 MediScan-Health")
+    st.caption("Preliminary Medical Image Diagnosis")
     st.divider()
 
-    st.markdown("### Patient Context")
+    st.markdown("### Patient Info")
     p_name = st.text_input("Name", value="Rahul Kumar")
     c1, c2 = st.columns(2)
     p_age = c1.number_input("Age", 0, 120, 27)
@@ -274,13 +274,13 @@ def metric_card(col, label, value):
 metric_card(m1, "Patient ID", st.session_state.report_id)
 metric_card(m2, "Target Organ", organ_val)
 metric_card(m3, "Anomalies", findings_val)
-metric_card(m4, "AI Risk Score", risk_val)
+metric_card(m4, "Risk Score", risk_val)
 
 st.write("") # Spacer
 
 # 2. Tabs for Workflow
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
-    "🔍 Visual Scan", "📄 Clinical Report", "🤖 Doctor AI", "👨‍⚕️ Doctor Portal", "📊 Analytics", "👥 Credits"
+    "🔍 Visual Scan", "📄 Clinical Report", "🤖 Doctor ChatBot", "👨‍⚕️ Doctor Portal", "📊 Analytics", "👨🏻‍💻 Dev Info"
 ])
 
 # --- TAB 1: VISUAL SCAN ---
@@ -288,7 +288,7 @@ with tab1:
     col_upload, col_preview = st.columns([1, 2])
     
     with col_upload:
-        st.subheader("Upload Imaging")
+        st.subheader("Upload an Image 👇")
         uploaded_file = st.file_uploader("Drop X-Ray/MRI here", type=["jpg", "png", "jpeg"])
         
         if uploaded_file:
@@ -298,7 +298,7 @@ with tab1:
                 st.session_state.analysis_result = None 
                 st.session_state.deep_eval_result = None
             
-            if st.button("🚀 Run Diagnostic Scan", use_container_width=True):
+            if st.button("🚀 Click to Start Diagnosis Scan", use_container_width=True):
                 with st.status("Initializing MediScan Engine...", expanded=True) as status:
                     st.write("Preprocessing image...")
                     pil_img = Image.open(uploaded_file).convert("RGB")
@@ -352,13 +352,13 @@ with tab1:
                 
                 # Save annotated image for PDF
                 annotated_img.save("temp_scan.jpg")
-                st.image(annotated_img, caption="AI Annotated Analysis", use_container_width=True)
+                st.image(annotated_img, caption="Anamoly Annotated Analysis", use_container_width=True)
             else:
                 # Save original for PDF if no analysis yet
                 pil_img.save("temp_scan.jpg")
                 st.image(pil_img, caption="Original Source", use_container_width=True)
         else:
-            st.info("Awaiting Image Upload")
+            st.info("  Waiting for Image ...")
 
 # --- TAB 2: CLINICAL REPORT ---
 with tab2:
@@ -532,7 +532,7 @@ with tab4:
                         st.error("❌ Invalid credentials for this department")
             
             # Show credentials hint
-            with st.expander("💡 Demo Credentials"):
+            with st.expander("💡Credentials (For Demo Only)"):
                 for dept, creds in DOCTOR_CREDENTIALS.items():
                     st.caption(f"**{dept.capitalize()}**: {creds['u']} / {creds['p']}")
     
