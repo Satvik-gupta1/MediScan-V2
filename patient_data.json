@@ -1,7 +1,7 @@
 [
   {
     "id": "PID-916",
-    "name": "Rahul Kumar",
+    "name": "Jatin Mittal",
     "age": 27,
     "sex": "Male",
     "disease": "Infiltration",
@@ -11,7 +11,7 @@
   },
   {
     "id": "PID-223",
-    "name": "Rahul Kumar",
+    "name": "Aryan",
     "age": 27,
     "sex": "Male",
     "disease": "Lung Infiltrate",
@@ -21,7 +21,7 @@
   },
   {
     "id": "PID-845",
-    "name": "Rahul Kumar",
+    "name": "Risabh",
     "age": 27,
     "sex": "Male",
     "disease": "Lung Opacity",
@@ -81,7 +81,7 @@
   },
   {
     "id": "PID-8614",
-    "name": "Rahul Kumar",
+    "name": "Raman",
     "age": 27,
     "sex": "Male",
     "disease": "Unknown",
